@@ -31,7 +31,10 @@ The second folder contains the R scripts used to conduct the simulation study pr
 
 - `mlDLVMNet-DGP.R` contains the code used to generate the simulated datasets according to the simulation design described in the manuscript.
 
-- `mlDLVMNet-adaptlasso-SimulationStudy.R`, `mlDLVMNet-lasso-SimulationStudy.R` and `mlDLVMNet-unreg-SimulationStudy.R` implement the estimation approaches considered in the simulation study: the adaptive Lasso (aLasso), the Lasso, and the unregularized maximum likelihood approaches. Each script contains the code required to estimate the model parameters using the corresponding estimation method.
+- The simulation study consider three estimaton approaches for which the respective syntaxes are: 
+    - `mlDLVMNet-adaptlasso-SimulationStudy.R` implementing the adaptive Lasso approaches
+    - `mlDLVMNet-lasso-SimulationStudy.R` implementing the Lasso approaches
+    - `mlDLVMNet-unreg-SimulationStudy.R` which implements the unregularized approach.
 
 - `SimulationResults.R` provides the functions and procedures used to manage, organize, and process the simulation results.
 

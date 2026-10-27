@@ -13,13 +13,13 @@ y.simu.ls <- readRDS("Simulated_Data_rep200.rds")
 ##### Dimension of the data
 M.rep <- 1:25
 N.ls<- c(75,100,125,150)
-T.dim<- 25 # c(25,50,75)
+T.dim<- 25 # or 50
 p.ls<- c(5,10,15)
 k.ls<- c(2,4,6)
 miss <- 'y' #c('y','n')
 item.3<-3 
 item.2<-2
-penalty.term<- 0.25#c(0,sqrt(mean(N.ls)/2))
+penalty.term<- 0.25# or 0.0025
 cov.v <- 3
 
 penFIML.tab_condition.list<- Quant.tab_condition.list<-list()
