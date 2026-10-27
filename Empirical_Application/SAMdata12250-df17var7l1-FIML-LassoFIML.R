@@ -5,7 +5,7 @@ library(dplyr)
 
 ############################# Data preparation / Statistics summary 
 # Computational methods
-source("./Computing_Penalized_Pseudo_FIML_LargeBT_CovMatrix.R")
+source("../Computing_Penalized_Pseudo_FIML_LargeBT_CovMatrix.R")
 
 # Loading the data 
 source("./revision2_dataprep1.R")

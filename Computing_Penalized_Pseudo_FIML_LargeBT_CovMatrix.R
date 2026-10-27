@@ -45,9 +45,7 @@ D.n <- function(n,sparse=T){
   return(D.sparse)
 }
 
-################### Parameters
-
-# Parameter matrices
+# Parameter matrices / vectorization
 Param.ls<-function(x,m.dim,r.dim){
   # x<-theta
   B <- matrix(x[1:(m.dim^2)], m.dim, m.dim)%>%Matrix(sparse = TRUE)
@@ -115,7 +113,7 @@ Sigma.eta<-function(C,S,m){
 
 # Observed items covaraince matrix
 Sigma.y<-function(x,m.dim,r.dim){
-  # x<-theta
+  # x<-theta0
   par.ls<-Param.ls(x,m.dim,r.dim)
   B <- par.ls$B
   Lambda <- par.ls$Lambda
@@ -137,6 +135,18 @@ Sigma.y<-function(x,m.dim,r.dim){
 }
 
 # Estimation of the Between level variation
+Mu_u.hat <- function(invS,M,bar.Z){
+  # Compute Eigen Decomposition
+  MSM<-t(M)%*%invS%*%M
+  # Compute Sigma Inverse
+  eig_full.MSM <- eigen(MSM, symmetric = TRUE)
+  eig_vals.MSM <- pmax(eig_full.MSM$values, 1e-4)
+  inv.MSM <- eig_full.MSM$vectors%*%diag(1/eig_vals.MSM)%*%t(eig_full.MSM$vectors)
+  Mu.hat<-inv.MSM%*%(t(M)%*%invS%*%bar.Z)
+  #mu.hat<-Mu.hat%>%as.matrix
+  return(Mu.hat%>%as.matrix)
+}
+
 Sigma_u.hat<-function(x,mean.T.dim,m.dim,r.dim,pen){
   # pen<-lambda.w[1]
   # x<-penFIML.est.lBFGSb
@@ -411,7 +421,7 @@ dLy.dSmu <- function(x,m.dim,r.dim){
 
 ###### Score function
 ScoreY.penFIMLit<-function(x,data,m.dim,r.dim,N.dim,T.dim,pen.l){
-  # x<-theta
+  # x<-theta0
   # data<-Z.summary
   # 
   # pen.l <- lambda.w

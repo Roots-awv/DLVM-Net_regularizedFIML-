@@ -6,7 +6,7 @@ library(dplyr)
 
 ############################# Data preparation / Statistics summary 
 # Loading the data / methods
-source("./Computing_Penalized_Pseudo_FIML_LargeBT_CovMatrix.R")
+source("../Computing_Penalized_Pseudo_FIML_LargeBT_CovMatrix.R")
 
 y.simu.ls <- readRDS("Simulated_Data_rep200.rds") 
 
